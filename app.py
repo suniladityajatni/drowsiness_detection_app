@@ -45,6 +45,8 @@ def generate_frames():
     global color
     while True:
             _, frame = cap.read()
+	    if(_==False):
+			return
             face_frame = frame.copy()
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             faces = detector(gray)
