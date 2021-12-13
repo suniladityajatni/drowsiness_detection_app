@@ -1,5 +1,5 @@
 from flask import Flask,render_template,Response
-# import winsound
+import winsound
 import cv2
 # Numpy for array related functions
 import numpy as np
@@ -7,6 +7,7 @@ import numpy as np
 import dlib
 #face_utils for basic operations of conversion
 from imutils import face_utils
+from imutils.video import WebcamVideoStream
 
 app=Flask(__name__)
 cap = cv2.VideoCapture(0)
@@ -45,8 +46,8 @@ def generate_frames():
     global color
     while True:
             _, frame = cap.read()
-	    if(_==False):
-			return
+            if(_==False):
+                return "static\style\ccf2.png"
             face_frame = frame.copy()
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             faces = detector(gray)
@@ -94,14 +95,14 @@ def generate_frames():
                         status="Active :)"
                         color = (0,255,0)
                 
-#                 if(status=="Drowsy !"):
-#                     duration = 1  # milliseconds
-#                     freq = 990  # Hz
-#                     winsound.Beep(freq, duration)
-#                 elif(status=="SLEEPING !!!"):
-#                     duration = 2  # milliseconds
-#                     freq = 440  # Hz
-#                     winsound.Beep(freq, duration)
+                if(status=="Drowsy !"):
+                    duration = 1  # milliseconds
+                    freq = 990  # Hz
+                    winsound.Beep(freq, duration)
+                elif(status=="SLEEPING !!!"):
+                    duration = 2  # milliseconds
+                    freq = 440  # Hz
+                    winsound.Beep(freq, duration)
 
                 cv2.putText(frame, status, (100,100), cv2.FONT_HERSHEY_SIMPLEX, 1.2, color,3)
 
