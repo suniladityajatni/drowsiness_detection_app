@@ -10,7 +10,7 @@ from imutils import face_utils
 from imutils.video import WebcamVideoStream
 
 app=Flask(__name__)
-cap = cv2.VideoCapture(-1)
+cap = cv2.VideoCapture(0)
 
 
 detector = dlib.get_frontal_face_detector()
